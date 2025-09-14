@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuneHub - A Musical Journey</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="tunehub_icon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <div id="welcome-page" class="page active">
+        <div class="welcome-content">
+            <h1>Welcome to TuneHub</h1>
+            <p>Your personal soundscape awaits.</p>
+            <button id="enter-btn">Dive into the Melodies</button>
+        </div>
+    </div>
+
+    <div id="browser-page" class="page">
+        <header class="page-header">
+            <h1>All Playlists</h1>
+        </header>
+        <div class="cardcontainer">
+        </div>
+    </div>
+
+    <div id="playlist-page" class="page">
+        <header class="page-header">
+            <button class="back-btn">&larr; Back to Playlists</button>
+            <h1 id="playlist-title">Playlist Title</h1>
+        </header>
+        <div class="songList">
+            <ul><!-- Songs are loaded here --></ul>
+        </div>
+    </div>
+
+    <div id="playbar">
+        <div class="playbar-content">
+            <div class="song-info-left">
+                <img id="playbar-artwork" src="songs/ncs/cover.jpg" alt="">
+                <div class="songinfo">Select a Song</div>
+            </div>
+            <div class="player-controls-center">
+                <div class="songButtons">
+                    <img id="previous" src="play-previous1.svg" alt="Previous">
+                    <img id="playbtn" src="play-button.svg" alt="Play/Pause">
+                    <img id="next" src="play-next1.svg" alt="Next">
+                </div>
+                <div class="seekbar-container">
+                    <div class="seekbar"><div class="circle"></div></div>
+                </div>
+            </div>
+            <div class="song-info-right">
+                <div class="songtime">0:00 / 0:00</div>
+                <div class="volume-container">
+                    <img src="volume-high-stroke-rounded.svg" alt="Volume">
+                    <input type="range" class="volume-slider" min="0" max="100" value="100" title="volume">
+                </div>
+                <button id="fullscreen-btn">
+                    <img src="fullscreen.svg" alt="Fullscreen">
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="fullscreen-player" class="page">
+        <div class="fs-background-art"></div>
+        <div class="fs-content">
+            <button id="fs-close-btn">&darr;</button>
+            <img id="fs-artwork" src="songs/ncs/cover.jpg" alt="Album Art">
+            <div id="fs-songinfo">Song Title</div>
+            <div id="fs-artist">Artist</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

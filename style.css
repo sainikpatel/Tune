@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+:root {
+    --background: #f5f5f7;
+    --panel-bg: #ffffff;
+    --text-main: #1d1d1f;
+    --text-secondary: #86868b;
+    --accent: #d60017;
+    --border-color: #d2d2d7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background);
+    color: var(--text-main);
+    overflow: hidden;
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background);
+}
+
+.page.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#welcome-page {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.welcome-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+}
+
+.welcome-content p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-top: 10px;
+}
+
+#enter-btn {
+    background-color: var(--accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 40px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#enter-btn:hover {
+    transform: scale(1.05);
+}
+
+.page-header {
+    padding: 24px 32px;
+    flex-shrink: 0;
+    background-color: rgba(245, 245, 247, 0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.back-btn {
+    background: var(--background);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+#browser-page .cardcontainer,
+#playlist-page .songList {
+    flex-grow: 1;
+    padding: 32px;
+    overflow-y: auto;
+}
+
+.cardcontainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 28px;
+}
+
+.card {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.songList ul {
+    list-style: none;
+}
+
+.songList li {
+    padding: 15px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.songList li:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.songList li.active-song {
+    color: var(--accent);
+    font-weight: 700;
+}
+#playbar {
+    position: fixed;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(25px) saturate(180%);
+    border-top: 1px solid var(--border-color);
+    transition: bottom 0.5s ease-in-out;
+    z-index: 100;
+}
+
+#playbar.visible {
+    bottom: 0;
+}
+
+.playbar-content {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 0 32px;
+
+}
+
+
+.song-info-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+}
+
+#playbar-artwork {
+    width: 55px;
+    height: 55px;
+    border-radius: 6px;
+}
+
+.songinfo {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.player-controls-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.songButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+
+.songButtons img {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    filter: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.songButtons img:hover {
+    opacity: 1;
+    width: 26px;
+    height: 26px;
+}
+
+#playbtn {
+    width: 38px;
+
+    height: 38px;
+}
+
+.seekbar-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.seekbar {
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+
+.circle {
+    width: 12px;
+    height: 12px;
+    background-color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    position: absolute;
+    
+    top: 50%;
+    transform: translateY(-50%);
+    transition: left 0.3s linear;
+}
+
+
+.song-info-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+.songtime {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+#fullscreen-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#fullscreen-btn img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+}
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.volume-container img {
+    width: 20px;
+    opacity: 0.6;
+}
+
+.volume-slider {
+    accent-color: var(--accent);
+    width: 100px; 
+    cursor: pointer;
+}
+
+#fullscreen-player {
+    background: var(--panel-bg);
+}
+
+#fullscreen-player .fs-background-art {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(80px) brightness(1.1);
+    transform: scale(1.2);
+    transition: background-image 0.7s ease;
+}
+
+#fullscreen-player .fs-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    top:180px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+#fs-artwork {
+    width: 70vmin;
+    max-width: 450px;
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+#fs-songinfo {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+#fs-artist {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+}
+
+#fs-close-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
